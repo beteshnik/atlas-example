@@ -1,11 +1,11 @@
 package layout;
 
 import io.qameta.atlas.webdriver.extension.FindBy;
-import element.Loader;
+import element.PageLoader;
 
 //слой со спиннером
 public interface WithLoader  {
     @FindBy("//body")
-    Loader loader();
+    PageLoader loader();
 
 }

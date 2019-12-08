@@ -8,7 +8,6 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.runtime.ScenarioImpl;
 import org.apache.commons.lang3.reflect.FieldUtils;
-import pagesOld.MainPage;
 import common.Browser;
 
 import java.io.IOException;
@@ -19,6 +18,8 @@ import java.util.Objects;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebDriverConfiguration;
 
+import service.ServicePage;
+
 public class MainSteps {
 
     private Atlas atlas;
@@ -28,6 +29,7 @@ public class MainSteps {
         Assertion.error = "";
         Assertion.message = "";
         atlas = new Atlas(new WebDriverConfiguration(Browser.getDriver()));
+        Browser.getDriver().navigate().to(Application.getProperty("homePage"));
 
     }
 
@@ -44,7 +46,7 @@ public class MainSteps {
         Application.log("Scenario is completed");
         Application.log(scenario.getName());
         if (scenario.isFailed()) {
-            MainPage.makeScreenShot("Test Failed");
+            ServicePage.makeScreenShot("Test Failed");
         }
         Browser.getDriver().quit();
     }

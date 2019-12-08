@@ -124,7 +124,7 @@ task cucumber(type: Test, dependsOn: ["cleanTest"]) {
 
 tasks.withType(Test) {
     classpath = project.sourceSets.main.runtimeClasspath
-    testClassesDir = project.sourceSets.main.output.classesDir
+    //testClassesDir = project.sourceSets.main.output.classesDir
 
     testLogging.showStandardStreams = true
     systemProperty "file.encoding", "utf-8"

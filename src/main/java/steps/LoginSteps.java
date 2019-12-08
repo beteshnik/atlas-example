@@ -1,30 +1,36 @@
 package steps;
 
 import common.Application;
+import common.Browser;
 import cucumber.api.java.en.When;
-import flow.LoginFlow;
 import io.qameta.allure.Step;
+import page.*;
+import site.*;
+import element.*;
+import io.qameta.atlas.webdriver.WebDriverConfiguration;
+import io.qameta.atlas.core.Atlas;
+import io.qameta.atlas.webdriver.WebPage;
 
 import java.io.IOException;
 
 public class LoginSteps {
 
-    //авторизация
-    @Step("Log in")
-    @When("^Log in")
-    public void login()  throws IOException {
-        LoginFlow.openHomePage();
-        String login = Application.getProperty("login");
-        String password = Application.getProperty("password");
-        LoginFlow.login(login, password);
+    private Atlas atlas = new Atlas(new WebDriverConfiguration(Browser.getDriver()));
+
+    private <T extends WebPage> T onPage(Class<T> page) {
+        return atlas.create(Browser.getDriver(), page);
     }
 
-    //открытие страницы авторизации
-    @Step("Open Home page")
-    @When("Open Home page")
-    public void openHomePage() {
-        LoginFlow.openHomePage();
+    private LoginPage onLoginPage() {
+        return onPage(LoginPage.class);
+    }
 
+    //авторизация
+    @Step("Log in")
+    @When("Log in")
+    public void login() throws IOException {
+        onLoginPage().startInputPassword().click();
+        onLoginPage().startInputPassword().click();
     }
 
 }

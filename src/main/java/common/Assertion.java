@@ -2,7 +2,7 @@ package common;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
-import pagesOld.MainPage;
+import service.ServicePage;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class Assertion {
     public static String assertEqualWithMessage(String actualResult, String expectedResult) throws IOException {
         error = "";
         message = "";
-        MainPage.makeScreenShot("Перед проверкой условия" + message);
+        ServicePage.makeScreenShot("Перед проверкой условия" + message);
         message = String.format("Ожидаемый результат: \"%s\"; Фактический результат: \"%s\".",
                 expectedResult, actualResult);
 
@@ -37,7 +37,7 @@ public class Assertion {
         message = m;
 
         try {
-            MainPage.makeScreenShot("Перед проверкой условия" + message);
+            ServicePage.makeScreenShot("Перед проверкой условия" + message);
             assertTrue(b);
         } catch (AssertionError ex ) {
             error = ex.toString().split("\\n")[0];
